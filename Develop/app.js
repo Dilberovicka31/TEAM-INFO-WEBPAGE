@@ -10,6 +10,39 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const employeeList = [];
+
+function askUser() {
+  return inquirer
+    .prompt([
+      {
+        message: "Name",
+        name: "name",
+        type: "input",
+      },
+    ])
+    .then((managerInfo) => {
+      const newManager = new Manager(
+        managerInfo.name,
+        managerInfo.id,
+        managerInfo.email
+      );
+      employeeList.push(newManager);
+    });
+}
+
+//Set of questions to ask -ask for manager info
+//Wrap each in a function , ask user for manager info, ask user for type of empl info
+//Aks user for engineer info
+//id, email, office number
+//Next set of question, which type of employee type
+//Ask user for engineer info
+//Back to which type of team member would you like to add
+//if select intern ask for intern info
+//Output folder team.html file
+
+//All the html already done
+//
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
