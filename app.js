@@ -83,7 +83,31 @@ function engineer() {
   ]);
 }
 
-function askUserForIntern() {}
+function askUserForIntern() {
+  return inquirer.prompt([
+    {
+      message: " What is your intern's name?",
+      name: "type",
+      type: "input",
+      // choices: ["Manager", "Engineer", "Intern"],
+    },
+    {
+      message: "What is your intern's id?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: "What is your intern's email?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: "What  is your intern's school?",
+      name: "type",
+      type: "input",
+    },
+  ]);
+}
 //Set of questions to ask -ask for manager info
 //Wrap each in a function , ask user for manager info, ask user for type of empl info
 //Aks user for engineer info
