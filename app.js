@@ -12,24 +12,20 @@ const render = require("./lib/htmlRenderer");
 
 const employeeList = [];
 
-function askUser() {
-  return inquirer
-    .prompt([
-      {
-        message: "Name",
-        name: "name",
-        type: "input",
-      },
-    ])
-    .then((managerInfo) => {
-      const newManager = new Manager(
-        managerInfo.name,
-        managerInfo.id,
-        managerInfo.email
-      );
-      employeeList.push(newManager);
-    });
-}
+inquirer
+  .prompt([
+    {
+      message: " What employee do you want to add",
+      name: "type",
+      type: "list",
+      choices: ["Manager", "Engineer", "Intern"],
+    },
+  ])
+  .then((employeeInfo) => {
+    employeeInfo.type;
+    console.log(employeeInfo);
+    //Switch case depending on what was picked, create questions, another inquirer
+  });
 
 //Set of questions to ask -ask for manager info
 //Wrap each in a function , ask user for manager info, ask user for type of empl info
