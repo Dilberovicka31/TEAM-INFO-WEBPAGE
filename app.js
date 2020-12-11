@@ -10,7 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const employeeList = [];
+const employeesEl = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -46,6 +46,7 @@ function managerQuestions() {
         managerInfo.email,
         managerInfo.office
       );
+      employeesEl.push(managerNew);
       console.log(managerNew);
       employeeType();
     });
@@ -111,6 +112,7 @@ function engineerQuestions() {
         engineerInfo.email,
         engineerInfo.github
       );
+      employeesEl.push(newEngineer);
 
       console.log(engineerInfo);
     });
@@ -147,6 +149,7 @@ function internQuestions() {
         internInfo.email,
         internInfo.school
       );
+      employeesEl.push(internNew);
 
       console.log(internInfo);
     });
