@@ -15,15 +15,40 @@ const employeeList = [];
 inquirer
   .prompt([
     {
-      message: " What employee do you want to add",
+      message: " What is your manager's name?",
+      name: "type",
+      type: "input",
+      // choices: ["Manager", "Engineer", "Intern"],
+    },
+    {
+      message: "What is your manager's id?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: "What is your manager's email?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: " What is your manager's office number",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: " Which type of team member would you like to add?",
       name: "type",
       type: "list",
-      choices: ["Manager", "Engineer", "Intern"],
+      choices: [
+        "Engineer",
+        "Intern",
+        "I don't want to add any more team members",
+      ],
     },
   ])
   .then((employeeInfo) => {
     employeeInfo.type;
-    console.log(employeeInfo);
+
     //Switch case depending on what was picked, create questions, another inquirer
   });
 
