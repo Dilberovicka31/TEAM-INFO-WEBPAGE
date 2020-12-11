@@ -12,7 +12,9 @@ const render = require("./lib/htmlRenderer");
 
 const employeeList = [];
 
-function manager() {
+// Write code to use inquirer to gather information about the development team members,
+// and to create objects for each team member (using the correct classes as blueprints!)
+function managerQuestions() {
   return inquirer
     .prompt([
       {
@@ -37,92 +39,118 @@ function manager() {
         type: "input",
       },
     ])
-    .then((employeeInfo) => {
-      employeeInfo.type;
+    .then((managerInfo) => {
+      const managerNew = new Manager(
+        managerInfo.name,
+        managerInfo.id,
+        managerInfo.email,
+        managerInfo.office
+      );
+      console.log(managerNew);
+      employeeType();
+    });
+}
+managerQuestions();
+
+function employeeType() {
+  return inquirer
+    .prompt([
+      {
+        message: " Which type of team member would you like to add?",
+        name: "type",
+        type: "list",
+        choices: [
+          "Engineer",
+          "Intern",
+          "I don't want to add any more team members",
+        ],
+      },
+    ])
+    .then((employeeInput) => {
+      if (employeeInput === "Engineer") {
+        console.log(employeeInput);
+        engineerQuestions();
+      } else {
+        employeeInput === "Intern";
+        console.log(employeeInput);
+        internQuestions();
+      }
 
       //Switch case depending on what was picked, create questions, another inquirer
     });
 }
-function employeeType() {
-  return inquirer.prompt([
-    {
-      message: " Which type of team member would you like to add?",
-      name: "type",
-      type: "list",
-      choices: [
-        "Engineer",
-        "Intern",
-        "I don't want to add any more team members",
-      ],
-    },
-  ]);
+
+function engineerQuestions() {
+  return inquirer
+    .prompt([
+      {
+        message: " What is your engineer's name?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: "What is your engineer's id?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: "What is your engineer's email?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: " What is your engineer's GitHub username?",
+        name: "type",
+        type: "input",
+      },
+    ])
+    .then((engineerInfo) => {
+      const newEngineer = new Engineer(
+        engineerInfo.name,
+        engineerInfo.id,
+        engineerInfo.email,
+        engineerInfo.github
+      );
+
+      console.log(engineerInfo);
+    });
 }
 
-function engineer() {
-  return inquirer.prompt([
-    {
-      message: " What is your engineer's name?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: "What is your engineer's id?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: "What is your engineer's email?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: " What is your engineer's GitHub username?",
-      name: "type",
-      type: "input",
-    },
-  ]);
+function internQuestions() {
+  return inquirer
+    .prompt([
+      {
+        message: " What is your intern's name?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: "What is your intern's id?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: "What is your intern's email?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: "What  is your intern's school?",
+        name: "type",
+        type: "input",
+      },
+    ])
+    .then((internInfo) => {
+      const internNew = new Intern(
+        internInfo.name,
+        internInfo.id,
+        internInfo.email,
+        internInfo.school
+      );
+
+      console.log(internInfo);
+    });
 }
-
-function askUserForIntern() {
-  return inquirer.prompt([
-    {
-      message: " What is your intern's name?",
-      name: "type",
-      type: "input",
-      // choices: ["Manager", "Engineer", "Intern"],
-    },
-    {
-      message: "What is your intern's id?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: "What is your intern's email?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: "What  is your intern's school?",
-      name: "type",
-      type: "input",
-    },
-  ]);
-}
-//Set of questions to ask -ask for manager info
-//Wrap each in a function , ask user for manager info, ask user for type of empl info
-//Aks user for engineer info
-//id, email, office number
-//Next set of question, which type of employee type
-//Ask user for engineer info
-//Back to which type of team member would you like to add
-//if select intern ask for intern info
-//Output folder team.html file
-
-//All the html already done
-//
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
