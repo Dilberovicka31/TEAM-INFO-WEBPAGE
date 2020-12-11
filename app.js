@@ -12,29 +12,39 @@ const render = require("./lib/htmlRenderer");
 
 const employeeList = [];
 
-inquirer
-  .prompt([
-    {
-      message: " What is your manager's name?",
-      name: "type",
-      type: "input",
-      // choices: ["Manager", "Engineer", "Intern"],
-    },
-    {
-      message: "What is your manager's id?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: "What is your manager's email?",
-      name: "type",
-      type: "input",
-    },
-    {
-      message: " What is your manager's office number",
-      name: "type",
-      type: "input",
-    },
+function manager() {
+  return inquirer
+    .prompt([
+      {
+        message: " What is your manager's name?",
+        name: "type",
+        type: "input",
+        // choices: ["Manager", "Engineer", "Intern"],
+      },
+      {
+        message: "What is your manager's id?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: "What is your manager's email?",
+        name: "type",
+        type: "input",
+      },
+      {
+        message: " What is your manager's office number",
+        name: "type",
+        type: "input",
+      },
+    ])
+    .then((employeeInfo) => {
+      employeeInfo.type;
+
+      //Switch case depending on what was picked, create questions, another inquirer
+    });
+}
+function employeeType() {
+  return inquirer.prompt([
     {
       message: " Which type of team member would you like to add?",
       name: "type",
@@ -45,13 +55,35 @@ inquirer
         "I don't want to add any more team members",
       ],
     },
-  ])
-  .then((employeeInfo) => {
-    employeeInfo.type;
+  ]);
+}
 
-    //Switch case depending on what was picked, create questions, another inquirer
-  });
+function engineer() {
+  return inquirer.prompt([
+    {
+      message: " What is your engineer's name?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: "What is your engineer's id?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: "What is your engineer's email?",
+      name: "type",
+      type: "input",
+    },
+    {
+      message: " What is your engineer's GitHub username?",
+      name: "type",
+      type: "input",
+    },
+  ]);
+}
 
+function askUserForIntern() {}
 //Set of questions to ask -ask for manager info
 //Wrap each in a function , ask user for manager info, ask user for type of empl info
 //Aks user for engineer info
