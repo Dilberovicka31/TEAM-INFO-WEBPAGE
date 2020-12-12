@@ -74,7 +74,7 @@ function employeeType() {
       } else if (response.type === "Intern") {
         internQuestions();
       } else {
-        return;
+        renderHtml();
       }
       //Switch case depending on what was picked, create questions, another inquirer
     });
@@ -156,6 +156,11 @@ function internQuestions() {
     });
 }
 managerQuestions();
+
+function renderHtml() {
+  const contentHtml = render(employeesEl);
+  fs.writeFileSync("team.html", contentHtml);
+}
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
