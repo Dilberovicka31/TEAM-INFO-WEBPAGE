@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { type } = require("os");
 
 const employeesEl = [];
 
@@ -44,14 +45,13 @@ function managerQuestions() {
         managerInfo.name,
         managerInfo.id,
         managerInfo.email,
-        managerInfo.office
+        managerInfo.officeNumber
       );
       employeesEl.push(managerNew);
-      console.log(managerNew);
+      console.log(managerInfo);
       employeeType();
     });
 }
-managerQuestions();
 
 function employeeType() {
   return inquirer
@@ -67,20 +67,19 @@ function employeeType() {
         ],
       },
     ])
-    .then((employeeInput) => {
-      if (employeeInput === "Engineer") {
-        console.log(employeeInput);
+    .then((response) => {
+      console.log(response);
+      if (response.type === "Engineer") {
         engineerQuestions();
-      } else {
-        employeeInput === "Intern";
-        console.log(employeeInput);
+      } else if (response.type === "Intern") {
         internQuestions();
+      } else {
+        return;
       }
-
       //Switch case depending on what was picked, create questions, another inquirer
     });
 }
-
+// employeeType();
 function engineerQuestions() {
   return inquirer
     .prompt([
@@ -115,6 +114,7 @@ function engineerQuestions() {
       employeesEl.push(newEngineer);
 
       console.log(engineerInfo);
+      employeeType();
     });
 }
 
@@ -152,8 +152,10 @@ function internQuestions() {
       employeesEl.push(internNew);
 
       console.log(internInfo);
+      employeeType();
     });
 }
+managerQuestions();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
